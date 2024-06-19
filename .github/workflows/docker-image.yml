@@ -1,0 +1,25 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password "${{ secrets.DOCKERHUB_PASSWORD }}"
+
+    - name: Build Docker image
+      run: docker build -t stebinluxsh/gradio_luxsh:latest .
+
+    - name: Push Docker image to Docker Hub
+      run: docker push stebinluxsh/gradio_luxsh:latest
+
+      
