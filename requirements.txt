@@ -1,0 +1,6 @@
+gradio
+pandas==2.0.3
+numpy==1.22.3
+google-cloud-documentai
+google-api-core
+tqdm
